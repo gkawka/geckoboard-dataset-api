@@ -1,3 +1,5 @@
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663/big.png)](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663)
+
 Geckoboard DataSet API
 ---
 
