@@ -2,22 +2,29 @@
 
 namespace Kwk\Geckoboard\Dataset;
 
-use GuzzleHttp\Message\MessageFactoryInterface;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Message\RequestInterface;
 
 class RequestFactory
 {
     /**
-     * @var MessageFactoryInterface
+     * @var ClientInterface
      */
-    private $factory;
+    private $client;
 
     /**
-     * @param MessageFactoryInterface $factory
+     * @var string
      */
-    public function __construct(MessageFactoryInterface $factory)
+    private $apiKey;
+
+    /**
+     * @param ClientInterface $client
+     * @param string          $apiKey
+     */
+    public function __construct(ClientInterface $client, $apiKey)
     {
-        $this->factory = $factory;
+        $this->apiKey = $apiKey;
+        $this->client = $client;
     }
 
     /**
@@ -27,13 +34,14 @@ class RequestFactory
      */
     public function getCreateRequest(DataSetInterface $dataSet)
     {
-        return $this->factory->createRequest(
+        return $this->client->createRequest(
             'PUT',
             sprintf('/datasets/%s', $dataSet->getName()),
             [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
+                'auth'    => [$this->apiKey, ''],
                 'json'    => $dataSet->getDefinition(),
             ]
         );
@@ -52,13 +60,14 @@ class RequestFactory
             $data[] = $row->getData();
         }
 
-        return $this->factory->createRequest(
+        return $this->client->createRequest(
             'POST',
             sprintf('/datasets/%s/data', $datasetName),
             [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
+                'auth'    => [$this->apiKey, ''],
                 'json'    => ['data' => $data],
             ]
         );
@@ -77,13 +86,14 @@ class RequestFactory
             $data[] = $row->getData();
         }
 
-        return $this->factory->createRequest(
+        return $this->client->createRequest(
             'PUT',
             sprintf('/datasets/%s/data', $datasetName),
             [
                 'headers' => [
                     'Content-Type' => 'application/json',
                 ],
+                'auth'    => [$this->apiKey, ''],
                 'json'    => ['data' => $data],
             ]
         );
@@ -96,9 +106,12 @@ class RequestFactory
      */
     public function getDeleteRequest($datasetName)
     {
-        return $this->factory->createRequest(
+        return $this->client->createRequest(
             'DELETE',
-            sprintf('/datasets/%s', $datasetName)
+            sprintf('/datasets/%s', $datasetName),
+            [
+                'auth' => [$this->apiKey, ''],
+            ]
         );
     }
 }

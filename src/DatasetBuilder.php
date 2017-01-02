@@ -12,9 +12,9 @@ class DatasetBuilder
      */
     public function build()
     {
-        return $this->parameters + [
+        return [
             'fields' => $this->fields,
-        ];
+        ] + $this->parameters;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Test\Kwk\Geckoboard\Dataset;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Message\MessageFactory;
 use Kwk\Geckoboard\Dataset\RequestFactory;
 use Test\Kwk\Geckoboard\Dataset\Resources\Dataset\TestDatarow;
@@ -36,7 +37,7 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $request = (new RequestFactory(new MessageFactory()))->getCreateRequest(new TestDataset());
+        $request = (new RequestFactory(new Client(), ''))->getCreateRequest(new TestDataset());
 
         $this->assertEquals('PUT', $request->getMethod());
         $this->assertEquals('/datasets/test', $request->getUrl());
@@ -62,7 +63,7 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $request = (new RequestFactory(new MessageFactory()))
+        $request = (new RequestFactory(new Client(), ''))
             ->getAppendRequest('test', [new TestDatarow(), new TestDatarow()]);
 
         $this->assertEquals('POST', $request->getMethod());
@@ -89,7 +90,7 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $request = (new RequestFactory(new MessageFactory()))->getReplaceRequest('test', [new TestDatarow(), new TestDatarow()]);
+        $request = (new RequestFactory(new Client(), ''))->getReplaceRequest('test', [new TestDatarow(), new TestDatarow()]);
 
         $this->assertEquals('PUT', $request->getMethod());
         $this->assertEquals('/datasets/test/data', $request->getUrl());
@@ -102,7 +103,7 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetDeleteRequest()
     {
-        $request = (new RequestFactory(new MessageFactory()))->getDeleteRequest('test');
+        $request = (new RequestFactory(new Client(), ''))->getDeleteRequest('test');
 
         $this->assertEquals('DELETE', $request->getMethod());
         $this->assertEquals('/datasets/test', $request->getUrl());

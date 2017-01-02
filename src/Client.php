@@ -4,7 +4,8 @@ namespace Kwk\Geckoboard\Dataset;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\RequestException;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Message\MessageFactory;
+use GuzzleHttp\Message\ResponseInterface;
 
 class Client
 {
@@ -38,9 +39,9 @@ class Client
      */
     public function create(DataSetInterface $dataSet)
     {
-        $request = RequestFactory::getCreateRequest($dataSet);
+        $request = (new RequestFactory($this->httpClient, $this->apiKey))->getCreateRequest($dataSet);
 
-        return $this->httpClient->send($request, ['auth' => [$this->apiKey, '']]);
+        return $this->httpClient->send($request);
     }
 
     /**
@@ -53,9 +54,9 @@ class Client
      */
     public function append(DataSetInterface $dataSet, array $dataRows)
     {
-        $request = RequestFactory::getAppendRequest($dataSet->getName(), $dataRows);
+        $request = (new RequestFactory($this->httpClient, $this->apiKey))->getAppendRequest($dataSet->getName(), $dataRows);
 
-        return $this->httpClient->send($request, ['auth' => [$this->apiKey, '']]);
+        return $this->httpClient->send($request);
     }
 
     /**
@@ -68,9 +69,9 @@ class Client
      */
     public function replace(DataSetInterface $dataSet, array $dataRows)
     {
-        $request = RequestFactory::getReplaceRequest($dataSet->getName(), $dataRows);
+        $request = (new RequestFactory($this->httpClient, $this->apiKey))->getReplaceRequest($dataSet->getName(), $dataRows);
 
-        return $this->httpClient->send($request, ['auth' => [$this->apiKey, '']]);
+        return $this->httpClient->send($request);
     }
 
     /**
@@ -82,8 +83,8 @@ class Client
      */
     public function delete(DataSetInterface $dataSet)
     {
-        $request = RequestFactory::getDeleteRequest($dataSet->getName());
+        $request = (new RequestFactory($this->httpClient, $this->apiKey))->getDeleteRequest($dataSet->getName());
 
-        return $this->httpClient->send($request, ['auth' => [$this->apiKey, '']]);
+        return $this->httpClient->send($request);
     }
 }
