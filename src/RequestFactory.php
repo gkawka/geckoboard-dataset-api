@@ -2,23 +2,40 @@
 
 namespace Kwk\Geckoboard\Dataset;
 
-use GuzzleHttp\Psr7\Request;
-use Psr\Http\Message\RequestInterface;
+use GuzzleHttp\Message\MessageFactoryInterface;
+use GuzzleHttp\Message\RequestInterface;
 
 class RequestFactory
 {
     /**
+     * @var MessageFactoryInterface
+     */
+    private $factory;
+
+    /**
+     * @param MessageFactoryInterface $factory
+     */
+    public function __construct(MessageFactoryInterface $factory)
+    {
+        $this->factory = $factory;
+    }
+
+    /**
      * @param DataSetInterface $dataSet
      *
-     * @return Request
+     * @return RequestInterface
      */
-    public static function getCreateRequest(DataSetInterface $dataSet)
+    public function getCreateRequest(DataSetInterface $dataSet)
     {
-        return new Request(
+        return $this->factory->createRequest(
             'PUT',
             sprintf('/datasets/%s', $dataSet->getName()),
-            ['Content-Type' => 'application/json'],
-            json_encode($dataSet->getDefinition())
+            [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json'    => $dataSet->getDefinition(),
+            ]
         );
     }
 
@@ -28,18 +45,22 @@ class RequestFactory
      *
      * @return RequestInterface
      */
-    public static function getAppendRequest($datasetName, array $rows)
+    public function getAppendRequest($datasetName, array $rows)
     {
         $data = [];
         foreach ($rows as $row) {
             $data[] = $row->getData();
         }
 
-        return new Request(
+        return $this->factory->createRequest(
             'POST',
             sprintf('/datasets/%s/data', $datasetName),
-            ['Content-Type' => 'application/json'],
-            json_encode(['data' => $data])
+            [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json'    => ['data' => $data],
+            ]
         );
     }
 
@@ -49,18 +70,22 @@ class RequestFactory
      *
      * @return RequestInterface
      */
-    public static function getReplaceRequest($datasetName, array $rows)
+    public function getReplaceRequest($datasetName, array $rows)
     {
         $data = [];
         foreach ($rows as $row) {
             $data[] = $row->getData();
         }
 
-        return new Request(
+        return $this->factory->createRequest(
             'PUT',
             sprintf('/datasets/%s/data', $datasetName),
-            ['Content-Type' => 'application/json'],
-            json_encode(['data' => $data])
+            [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json'    => ['data' => $data],
+            ]
         );
     }
 
@@ -69,9 +94,9 @@ class RequestFactory
      *
      * @return RequestInterface
      */
-    public static function getDeleteRequest($datasetName)
+    public function getDeleteRequest($datasetName)
     {
-        return new Request(
+        return $this->factory->createRequest(
             'DELETE',
             sprintf('/datasets/%s', $datasetName)
         );
