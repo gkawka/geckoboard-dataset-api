@@ -4,7 +4,6 @@ namespace Kwk\Geckoboard\Dataset;
 
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\MessageFactory;
 use GuzzleHttp\Message\ResponseInterface;
 
 class Client
