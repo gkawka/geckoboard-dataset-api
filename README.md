@@ -41,7 +41,7 @@ class TestDataset implements DataSetInterface
     {
         return (new DatasetBuilder())
             ->addField('date_field_id', new DateType('Date'))
-            ->addField('number_field_id'', new NumberType('Number'))
+            ->addField('number_field_id', new NumberType('Number'))
             ->build();
     }
 }
