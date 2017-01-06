@@ -89,8 +89,32 @@ $client->create(new \Preview\TestDataset());
 ```
 
 Append row:
+
+With class:
+```php
+<?php
+
+namespace Preview\Dataset;
+
+use Kwk\Geckoboard\Dataset\DataSetRowInterface;
+
+class TestDatarow implements DataSetRowInterface
+{
+    /**
+     * {@inheritDoc}
+     */
+    public function getData()
+    {
+        return [
+            'param1' => 'val1',
+            'param2' => 'val2',
+        ];
+    }
+}
+```
+
+Appending is just one liner:
+
 ```php
 $client->append(new \Preview\TestDatarow());
 ```
-
-
