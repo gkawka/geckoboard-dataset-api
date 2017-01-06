@@ -1,10 +1,9 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663/big.png)](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663)
-
 Geckoboard DataSet API
----
+----------------------
 
 Library provides client for Geckoboard DataSet API by REST requests
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663/mini.png)](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/?branch=master)
 
 How to use
 ---
