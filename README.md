@@ -116,5 +116,5 @@ class TestDatarow implements DataSetRowInterface
 Appending is just one liner:
 
 ```php
-$client->append(new \Preview\TestDatarow());
+$client->append(new \Preview\TestDataset(), [new \Preview\TestDatarow()]);
 ```
