@@ -106,8 +106,7 @@ class RequestFactory
             sprintf('/datasets/%s', $datasetName),
             [
                 'Authorization' => 'Basic '.base64_encode($this->apiKey.':'),
-            ],
-            \GuzzleHttp\json_encode(['data' => $data])
+            ]
         );
     }
 }
