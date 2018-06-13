@@ -4,8 +4,9 @@ namespace Test\Kwk\Geckoboard\Dataset\Type;
 
 use Kwk\Geckoboard\Dataset\Type\PercentageType;
 use Kwk\Geckoboard\Dataset\TypeInterface;
+use PHPUnit\Framework\TestCase;
 
-class PercentageTypeTest extends \PHPUnit_Framework_TestCase
+class PercentageTypeTest extends TestCase
 {
     /**
      * @test if class even exists

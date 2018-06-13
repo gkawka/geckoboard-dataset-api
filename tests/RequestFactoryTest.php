@@ -5,10 +5,11 @@ namespace Test\Kwk\Geckoboard\Dataset;
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\MessageFactory;
 use Kwk\Geckoboard\Dataset\RequestFactory;
+use PHPUnit\Framework\TestCase;
 use Test\Kwk\Geckoboard\Dataset\Resources\Dataset\TestDatarow;
 use Test\Kwk\Geckoboard\Dataset\Resources\Dataset\TestDataset;
 
-class RequestFactoryTest extends \PHPUnit_Framework_TestCase
+class RequestFactoryTest extends TestCase
 {
     /**
      * @test is even class exists

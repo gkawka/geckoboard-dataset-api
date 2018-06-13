@@ -3,9 +3,10 @@
 namespace Test\Kwk\Geckoboard\Dataset;
 
 use Kwk\Geckoboard\Dataset\DatasetBuilder;
+use PHPUnit\Framework\TestCase;
 use Test\Kwk\Geckoboard\Dataset\Resources\Type\TestType;
 
-class DatasetBuilderTest extends \PHPUnit_Framework_TestCase
+class DatasetBuilderTest extends TestCase
 {
     /**
      * @test if class even exists

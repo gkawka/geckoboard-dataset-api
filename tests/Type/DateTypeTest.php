@@ -4,8 +4,9 @@ namespace Test\Kwk\Geckoboard\Dataset\Type;
 
 use Kwk\Geckoboard\Dataset\Type\DateType;
 use Kwk\Geckoboard\Dataset\TypeInterface;
+use PHPUnit\Framework\TestCase;
 
-class DateTypeTest extends \PHPUnit_Framework_TestCase
+class DateTypeTest extends TestCase
 {
     /**
      * @test if class even exists
