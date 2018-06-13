@@ -4,8 +4,9 @@ namespace Test\Kwk\Geckoboard\Dataset\Type;
 
 use Kwk\Geckoboard\Dataset\TypeInterface;
 use Kwk\Geckoboard\Dataset\Type\StringType;
+use PHPUnit\Framework\TestCase;
 
-class StringTypeTest extends \PHPUnit_Framework_TestCase
+class StringTypeTest extends TestCase
 {
     /**
      * @test if class even exists

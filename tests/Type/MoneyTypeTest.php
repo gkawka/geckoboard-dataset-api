@@ -4,8 +4,9 @@ namespace Test\Kwk\Geckoboard\Dataset\Type;
 
 use Kwk\Geckoboard\Dataset\TypeInterface;
 use Kwk\Geckoboard\Dataset\Type\MoneyType;
+use PHPUnit\Framework\TestCase;
 
-class MoneyTypeTest extends \PHPUnit_Framework_TestCase
+class MoneyTypeTest extends TestCase
 {
     /**
      * @test if class even exists
