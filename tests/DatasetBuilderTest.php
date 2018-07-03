@@ -121,7 +121,7 @@ class DatasetBuilderTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $obj    = new datasetbuilder();
+        $obj    = new DatasetBuilder();
         $result = $obj
             ->addfield('test1', new testtype())
             ->addparam('customparam', ['param' => 'customparamvalue'])
