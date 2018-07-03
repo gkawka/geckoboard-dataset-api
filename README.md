@@ -64,7 +64,7 @@ class TestDatarow implements DataSetRowInterface
     {
         return [
             'date_field_id' => '2016-12-31',
-            'number_field_id' => '1021',
+            'number_field_id' => 1021,
         ];
     }
 }
@@ -116,5 +116,5 @@ class TestDatarow implements DataSetRowInterface
 Appending is just one liner:
 
 ```php
-$client->append(new \Preview\TestDatarow());
+$client->append(new \Preview\TestDataset(), [new \Preview\TestDatarow()]);
 ```
