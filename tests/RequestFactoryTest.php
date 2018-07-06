@@ -3,7 +3,6 @@
 namespace Test\Kwk\Geckoboard\Dataset;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Message\MessageFactory;
 use Kwk\Geckoboard\Dataset\RequestFactory;
 use Test\Kwk\Geckoboard\Dataset\Resources\Dataset\TestDatarow;
 use Test\Kwk\Geckoboard\Dataset\Resources\Dataset\TestDataset;
@@ -24,14 +23,14 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
     public function testGetCreateRequest()
     {
         $expectedRequestBody = [
-            "fields" => [
-                'date'   => [
+            'fields' => [
+                'date' => [
                     'type' => 'date',
                     'name' => 'Date',
                 ],
                 'number' => [
-                    'type'     => 'number',
-                    'name'     => 'Number',
+                    'type' => 'number',
+                    'name' => 'Number',
                     'optional' => false,
                 ],
             ],
@@ -40,8 +39,8 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
         $request = (new RequestFactory(new Client(), ''))->getCreateRequest(new TestDataset());
 
         $this->assertEquals('PUT', $request->getMethod());
-        $this->assertEquals('/datasets/test', $request->getUrl());
-        $this->assertEquals('application/json', $request->getHeader('Content-Type'), 'Request should have `Content-type` header with value `application/json`');
+        $this->assertEquals('/datasets/test', $request->getUri());
+        $this->assertEquals(['application/json'], $request->getHeader('Content-Type'), 'Request should have `Content-type` header with value `application/json`');
         $this->assertEquals(json_encode($expectedRequestBody), $request->getBody()->getContents());
     }
 
@@ -67,8 +66,8 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
             ->getAppendRequest('test', [new TestDatarow(), new TestDatarow()]);
 
         $this->assertEquals('POST', $request->getMethod());
-        $this->assertEquals('/datasets/test/data', $request->getUrl());
-        $this->assertEquals('application/json', $request->getHeader('Content-Type'), 'Request should have `Content-type` header with value `application/json`');
+        $this->assertEquals('/datasets/test/data', $request->getUri());
+        $this->assertEquals(['application/json'], $request->getHeader('Content-Type'), 'Request should have `Content-type` header with value `application/json`');
         $this->assertEquals(json_encode($expectedBody), $request->getBody()->getContents());
     }
 
@@ -93,8 +92,8 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
         $request = (new RequestFactory(new Client(), ''))->getReplaceRequest('test', [new TestDatarow(), new TestDatarow()]);
 
         $this->assertEquals('PUT', $request->getMethod());
-        $this->assertEquals('/datasets/test/data', $request->getUrl());
-        $this->assertEquals('application/json', $request->getHeader('Content-Type'), 'Request should have `Content-type` header with value `application/json`');
+        $this->assertEquals('/datasets/test/data', $request->getUri());
+        $this->assertEquals(['application/json'], $request->getHeader('Content-Type'), 'Request should have `Content-type` header with value `application/json`');
         $this->assertEquals(json_encode($expectedBody), $request->getBody()->getContents());
     }
 
@@ -106,6 +105,6 @@ class RequestFactoryTest extends \PHPUnit_Framework_TestCase
         $request = (new RequestFactory(new Client(), ''))->getDeleteRequest('test');
 
         $this->assertEquals('DELETE', $request->getMethod());
-        $this->assertEquals('/datasets/test', $request->getUrl());
+        $this->assertEquals('/datasets/test', $request->getUri());
     }
 }

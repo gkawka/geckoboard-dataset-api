@@ -4,6 +4,7 @@ namespace Kwk\Geckoboard\Dataset;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Message\RequestInterface;
+use GuzzleHttp\Psr7\Request;
 
 class RequestFactory
 {
@@ -34,16 +35,14 @@ class RequestFactory
      */
     public function getCreateRequest(DataSetInterface $dataSet)
     {
-        return $this->client->createRequest(
+        return new Request(
             'PUT',
             sprintf('/datasets/%s', $dataSet->getName()),
             [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                ],
-                'auth'    => [$this->apiKey, ''],
-                'json'    => $dataSet->getDefinition(),
-            ]
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Basic '.base64_encode($this->apiKey.':'),
+            ],
+            \GuzzleHttp\json_encode($dataSet->getDefinition())
         );
     }
 
@@ -60,16 +59,14 @@ class RequestFactory
             $data[] = $row->getData();
         }
 
-        return $this->client->createRequest(
+        return new Request(
             'POST',
             sprintf('/datasets/%s/data', $datasetName),
             [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                ],
-                'auth'    => [$this->apiKey, ''],
-                'json'    => ['data' => $data],
-            ]
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Basic '.base64_encode($this->apiKey.':'),
+            ],
+            \GuzzleHttp\json_encode(['data' => $data])
         );
     }
 
@@ -86,16 +83,14 @@ class RequestFactory
             $data[] = $row->getData();
         }
 
-        return $this->client->createRequest(
+        return new Request(
             'PUT',
             sprintf('/datasets/%s/data', $datasetName),
             [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                ],
-                'auth'    => [$this->apiKey, ''],
-                'json'    => ['data' => $data],
-            ]
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Basic '.base64_encode($this->apiKey.':'),
+            ],
+            \GuzzleHttp\json_encode(['data' => $data])
         );
     }
 
@@ -106,11 +101,11 @@ class RequestFactory
      */
     public function getDeleteRequest($datasetName)
     {
-        return $this->client->createRequest(
+        return new Request(
             'DELETE',
             sprintf('/datasets/%s', $datasetName),
             [
-                'auth' => [$this->apiKey, ''],
+                'Authorization' => 'Basic '.base64_encode($this->apiKey.':'),
             ]
         );
     }

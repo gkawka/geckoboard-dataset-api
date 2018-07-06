@@ -78,7 +78,7 @@ Create client:
 
 ```php
 
-$httpClient = new \Guzzle\Http\Client('https://api.geckoboard.com');
+$httpClient = new \GuzzleHttp\Client(['base_uri' => 'https://api.geckoboard.com']);
 $client = new \Kwk\Geckoboard\Dataset\Client($httpClient, 'YOUR_API_KEY');
 
 ```
