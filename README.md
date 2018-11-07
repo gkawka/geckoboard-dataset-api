@@ -5,6 +5,11 @@ Library provides client for Geckoboard DataSet API by REST requests
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663/mini.png)](https://insight.sensiolabs.com/projects/bdaace9a-a9e6-4667-a892-092db9d14663) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/gkawka/geckoboard-dataset-api/?branch=master)
 
+**Branches**
+- [0.1.x](https://github.com/gkawka/geckoboard-dataset-api/tree/0.1.x-dev) PHP 5.6 support and guzzle 5.*
+- [0.2.x](https://github.com/gkawka/geckoboard-dataset-api/tree/0.2.x-dev) PHP 7.1+ support and guzzle ^5.3.2
+
+
 How to use
 ---
 
